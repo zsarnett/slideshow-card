@@ -13,8 +13,11 @@ class SlideshowCard extends Polymer.Element {
     this.shadowRoot.firstChild.querySelector('.card').querySelector('.prev').addEventListener('click', this._prevSlide.bind(this));
     this.shadowRoot.firstChild.querySelector('.card').querySelector('.next').addEventListener('click',this._nextSlide.bind(this));
     this._styleCard();
-    if (this.config.autoPlay)
-      this._autoSlide();
+    if (this.config.autoplay) {
+      this.interval = setInterval(this._autoPlay.bind(this), (this.config.autodelay * 1000) || 5000);
+      this.addEventListener('mouseover', this._stopSlide.bind(this));
+      this.addEventListener('mouseout', this._startSlide.bind(this));
+    }
   }
 
   connectedCallback() {
@@ -30,7 +33,7 @@ class SlideshowCard extends Polymer.Element {
       card.appendChild(this.content);
       this._cards.forEach(item => {
         item.hass = hass;
-        item.className = 'slides fade'
+        item.className = 'slides fade';
       });
       this.card = card;
       this.shadowRoot.appendChild(card);
@@ -41,7 +44,7 @@ class SlideshowCard extends Polymer.Element {
     this.config = config;
 
     if (!config || !config.cards || !Array.isArray(config.cards) || config.cards.length < 2) {
-      throw new Error('Card config incorrect');
+      throw new Error('Card Configuration is not set up properly!');
     }
 
     this._cards = config.cards.map((item) => {
@@ -164,11 +167,17 @@ class SlideshowCard extends Polymer.Element {
   }
 
   _prevSlide() {
+    clearInterval(this.interval);
     this._showSlides(this.slideIndex -= 1);
+    if (this.config.autoplay)
+      this.interval = setInterval(this._autoPlay.bind(this), (this.config.autodelay * 1000) || 5000);
   }
 
   _nextSlide() {
+    clearInterval(this.interval);
     this._showSlides(this.slideIndex += 1);
+    if (this.config.autoplay)
+      this.interval = setInterval(this._autoPlay.bind(this), (this.config.autodelay * 1000) || 5000);
   }
 
   _showSlides(n) {
@@ -191,7 +200,16 @@ class SlideshowCard extends Polymer.Element {
     this.slideIndex++;
     if (this.slideIndex > slides.length) {this.slideIndex = 1}
     slides[this.slideIndex-1].style.display = "block";
-    setTimeout(this._autoSlide.bind(this), (this.config.transitionDelay * 1000) || 5000);
+    // setTimeout(this._autoPlay.bind(this), (this.config.autodelay * 1000) || 5000);
+  }
+
+  _stopSlide(){
+    clearInterval(this.interval);
+  }
+
+  _startSlide() {
+    clearInterval(this.interval);
+    this.interval = setInterval(this._autoPlay.bind(this), (this.config.autodelay * 1000) || 5000);
   }
 
   getCardSize() {

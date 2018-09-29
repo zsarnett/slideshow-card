@@ -19,7 +19,7 @@ Slideshow Card for Home Assistant's UI LoveLace
 
 | Name | Type | Default | Description
 | ---- | ---- | ------- | -----------
-| style | list | **Optional** | List of Style Attributes per Card
+| style | list | **Optional** | List of Style Attributes per Card - This allows for styling of Child Cards
 
 ## Installation
 
@@ -97,3 +97,22 @@ resources:
 ```
 
 ![Example 2](https://i.gyazo.com/9a344f995906b43e42b8be85e9c8d675.gif)
+
+```yaml
+- type: custom:slideshow-card
+  arrowcolor: var(--primary-text-color)
+  arrowopacity: .5
+  cards:
+    - type: picture
+      image: /local/images/1.jpg
+      style:
+        'border-radius': '25px'
+    - type: picture
+      image: /local/images/2.jpg
+    - type: picture
+      image: /local/images/3.jpg
+      style:
+        'border-radius': '10px'
+```
+
+![Example 3](https://i.gyazo.com/662d39821d47a6131daf235a6876cf41.gif)

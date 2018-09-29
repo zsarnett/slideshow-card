@@ -95,3 +95,5 @@ resources:
         - light.bedroom_3
         - light.bedroom_lamp_2
 ```
+
+![Example 2](https://i.gyazo.com/9a344f995906b43e42b8be85e9c8d675.gif)

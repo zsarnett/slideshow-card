@@ -18,10 +18,6 @@ class SlideshowCard extends Polymer.Element {
       this.addEventListener('mouseover', this._stopSlide.bind(this));
       this.addEventListener('mouseout', this._startSlide.bind(this));
     }
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
     this._showSlides(this.slideIndex);
   }
 
@@ -38,6 +34,11 @@ class SlideshowCard extends Polymer.Element {
       this.card = card;
       this.shadowRoot.appendChild(card);
     }
+    else {
+      this._cards.forEach(item => {
+        item.hass = hass;
+      });
+    }
   }
 
   setConfig(config) {
@@ -52,7 +53,8 @@ class SlideshowCard extends Polymer.Element {
 
         if (item.type.startsWith("custom:")){
           element = document.createElement(`${item.type.substr("custom:".length)}`);
-        } else {
+        }
+        else {
           element = document.createElement(`hui-${item.type}-card`);
         }
         element.setConfig(item);
@@ -148,6 +150,7 @@ class SlideshowCard extends Polymer.Element {
           target.style.setProperty(k, item._config.style[k]);
         }
       }
+
       target.style.setProperty('box-shadow', 'none');
     });
 

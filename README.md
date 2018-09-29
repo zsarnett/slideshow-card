@@ -15,7 +15,7 @@ Slideshow Card for Home Assistant's UI LoveLace
 | autoplay | boolean | **Optional** | Option to turn on/off auto switching of the cards, `Default: false`
 | autodelay | string | **Optional** | Seconds between switching to next card when autoplay=true, `Default: 5`
 
-## Added Card Variables
+## Added Child Card Variables
 
 | Name | Type | Default | Description
 | ---- | ---- | ------- | -----------

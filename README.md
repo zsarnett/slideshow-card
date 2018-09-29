@@ -116,3 +116,11 @@ resources:
 ```
 
 ![Example 3](https://i.gyazo.com/662d39821d47a6131daf235a6876cf41.gif)
+
+## Future Updates
+* Option for Outer Card to stay the max-height of any card in the Slideshow
+  * This removes the height chainging when switching cards
+
+## Credits
+
+Thank you to @thomasloven for his [Custom Cards](https://community.home-assistant.io/t/my-lovelace-plugins/70726) to work from and his help when creating this card

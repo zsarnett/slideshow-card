@@ -120,6 +120,7 @@ resources:
 ## Future Updates
 * Option for Outer Card to stay the max-height of any card in the Slideshow
   * This removes the height chainging when switching cards
+* Adding Swiping Gestures for Mobile use
 
 ## Credits
 

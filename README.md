@@ -9,11 +9,11 @@ Slideshow Card for Home Assistant's UI LoveLace
 | type | string | **Required** | `custom:slideshow-card`
 | cards | list | **Required** | List of cards `Reqires 2 or more cards`
 | style | list | **Optional** | List of Style attributes
-| arrowcolor | string | **Optional** | Color of the Navigational Arrows, `Default: Black`
-| arrowopacity | string | **Optional** | Opacity of the Navigational Arrows, `Default: 1`
+| arrow_color | string | **Optional** | Color of the Navigational Arrows, `Default: Black`
+| arrow_opacity | string | **Optional** | Opacity of the Navigational Arrows, `Default: 1`
 | flush | boolean | **Optional** | Makes the inner Cards flush with the Slideshow Card, `Default: false`
-| autoplay | boolean | **Optional** | Option to turn on/off auto switching of the cards, `Default: false`
-| autodelay | string | **Optional** | Seconds between switching to next card when autoplay=true, `Default: 5`
+| auto_play | boolean | **Optional** | Option to turn on/off auto switching of the cards, `Default: false`
+| auto_delay | string | **Optional** | Seconds between switching to next card when autoplay=true, `Default: 5`
 
 ## Added Child Card Variables
 
@@ -37,10 +37,10 @@ resources:
 ```yaml
 - type: custom:slideshow-card
   flush: true
-  arrowcolor: White
-  arrowopacity: .5
-  autoplay: true
-  autodelay: 4
+  arrow_color: White
+  arrow_opacity: .5
+  auto_play: true
+  auto_delay: 4
   style:
     'border-radius': '25px'
   cards:
@@ -56,8 +56,8 @@ resources:
 
 ```yaml
 - type: custom:slideshow-card
-  arrowcolor: var(--primary-text-color)
-  arrowopacity: .7
+  arrow_color: var(--primary-text-color)
+  arrow_opacity: .7
   cards:
     - type: glance
       column_width: 30%
@@ -100,8 +100,8 @@ resources:
 
 ```yaml
 - type: custom:slideshow-card
-  arrowcolor: var(--primary-text-color)
-  arrowopacity: .5
+  arrow_color: var(--primary-text-color)
+  arrow_opacity: .5
   cards:
     - type: picture
       image: /local/images/1.jpg

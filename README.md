@@ -23,7 +23,7 @@ Slideshow Card for Home Assistant's UI LoveLace
 
 ## Installation
 
-1. Copy `slideshow-card.js` to `<config directory>/www/column-card.js`
+1. Copy `slideshow-card.js` to `<config directory>/www/slideshow-card.js`
 2. Add `slideshow-card` as a resource in `ui-lovelace.yaml`
 
 ```yaml

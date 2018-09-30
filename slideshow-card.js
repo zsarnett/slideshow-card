@@ -13,8 +13,8 @@ class SlideshowCard extends Polymer.Element {
     this.shadowRoot.firstChild.querySelector('.card').querySelector('.prev').addEventListener('click', this._prevSlide.bind(this));
     this.shadowRoot.firstChild.querySelector('.card').querySelector('.next').addEventListener('click',this._nextSlide.bind(this));
     this._styleCard();
-    if (this.config.autoplay) {
-      this.interval = setInterval(this._autoPlay.bind(this), (this.config.autodelay * 1000) || 5000);
+    if (this.config.auto_play) {
+      this.interval = setInterval(this._autoPlay.bind(this), (this.config.auto_delay * 1000) || 5000);
       this.addEventListener('mouseover', this._stopSlide.bind(this));
       this.addEventListener('mouseout', this._startSlide.bind(this));
     }
@@ -89,8 +89,8 @@ class SlideshowCard extends Polymer.Element {
         top: 50%;
         width: auto;
         margin-top: -22px;
-        opacity:  ${this.config.arrowopacity || '1'};
-        color: ${this.config.arrowcolor || 'white'};
+        opacity:  ${this.config.arrow_opacity || '1'};
+        color: ${this.config.arrow_color || 'white'};
         font-weight: bold;
         font-size: 18px;
         transition: 0.6s ease;
@@ -159,12 +159,12 @@ class SlideshowCard extends Polymer.Element {
   _createNavigation() {
     this.content.insertAdjacentHTML('beforeend',`<a class="prev">
       <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-        <path fill="${this.config.arrowcolor || 'black'}" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+        <path fill="${this.config.arrow_color || 'black'}" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
       </svg>
     </a>
     <a class="next">
       <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-        <path fill="${this.config.arrowcolor || 'black'}" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+        <path fill="${this.config.arrow_color || 'black'}" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
       </svg>
     </a>`);
   }
@@ -172,15 +172,15 @@ class SlideshowCard extends Polymer.Element {
   _prevSlide() {
     clearInterval(this.interval);
     this._showSlides(this.slideIndex -= 1);
-    if (this.config.autoplay)
-      this.interval = setInterval(this._autoPlay.bind(this), (this.config.autodelay * 1000) || 5000);
+    if (this.config.auto_play)
+      this.interval = setInterval(this._autoPlay.bind(this), (this.config.auto_delay * 1000) || 5000);
   }
 
   _nextSlide() {
     clearInterval(this.interval);
     this._showSlides(this.slideIndex += 1);
-    if (this.config.autoplay)
-      this.interval = setInterval(this._autoPlay.bind(this), (this.config.autodelay * 1000) || 5000);
+    if (this.config.auto_play)
+      this.interval = setInterval(this._autoPlay.bind(this), (this.config.auto_delay * 1000) || 5000);
   }
 
   _showSlides(n) {
@@ -203,7 +203,6 @@ class SlideshowCard extends Polymer.Element {
     this.slideIndex++;
     if (this.slideIndex > slides.length) {this.slideIndex = 1}
     slides[this.slideIndex-1].style.display = "block";
-    // setTimeout(this._autoPlay.bind(this), (this.config.autodelay * 1000) || 5000);
   }
 
   _stopSlide(){
@@ -212,7 +211,7 @@ class SlideshowCard extends Polymer.Element {
 
   _startSlide() {
     clearInterval(this.interval);
-    this.interval = setInterval(this._autoPlay.bind(this), (this.config.autodelay * 1000) || 5000);
+    this.interval = setInterval(this._autoPlay.bind(this), (this.config.auto_delay * 1000) || 5000);
   }
 
   getCardSize() {

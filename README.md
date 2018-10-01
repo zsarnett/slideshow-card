@@ -38,17 +38,17 @@ You will need to create a folder in your config directory named `custom_componen
         - platform: folder_test
           folder: /config/www/images
     ```
-4. Create a folder in your `WWW` folder named `images`
-5. Add your images to this folder
-6. Restart Home Assistant
-7. Check the sensor.images entity to see if the `fileList` attribute lists your image files
-8. Add a card to your ui-lovelace.yaml
+5. Create a folder in your `WWW` folder named `images`
+6. Add your images to this folder
+7. Restart Home Assistant
+8. Check the sensor.images entity to see if the `fileList` attribute lists your image files
+9. Add a card to your ui-lovelace.yaml
     ```yaml
     - type: custom:slideshow-card
       folder: sensor.images
     ```
     * The other configuration variables are still available to use
-9. Refresh your Lovelace Frontend
+10. Refresh your Lovelace Frontend
 
 Any files you add to the folder should automatically get added to the slide show
 

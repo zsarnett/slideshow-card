@@ -11,7 +11,7 @@ Slideshow Card for Home Assistant's UI LoveLace
 | style | list | **Optional** | List of Style attributes
 | arrow_color | string | **Optional** | Color of the Navigational Arrows, `Default: Black`
 | arrow_opacity | string | **Optional** | Opacity of the Navigational Arrows, `Default: 1`
-| flush | boolean | **Optional** | Makes the inner Cards flush with the Slideshow Card, `Default: false`
+| fill | boolean | **Optional** | Makes the inner Cards flush with the Slideshow Card, `Default: false`
 | auto_play | boolean | **Optional** | Option to turn on/off auto switching of the cards, `Default: false`
 | auto_delay | string | **Optional** | Seconds between switching to next card when autoplay=true, `Default: 5`
 | folder | entity | **Optional** | This is for dynamically pulling images from a folder `See Dynamic Slideshow`

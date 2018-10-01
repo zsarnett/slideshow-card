@@ -161,10 +161,12 @@ Thank you to @thomasloven for his [Custom Cards](https://community.home-assistan
 ## Updates
 
 Breaking Changes: 
+
     * Flush has been replaced with fill
     * arrowcolor has been replaced with arrow_color
     * arrowopacity has been replaced with arrow_opacity
     * auotplay has been replaced with auto_play
     * autodelay has been replaced with auto_delay
 Other Changes:
+
     * Dynamic Slideshow

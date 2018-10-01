@@ -11,7 +11,7 @@ Slideshow Card for Home Assistant's UI LoveLace
 | style | list | **Optional** | List of Style attributes
 | arrow_color | string | **Optional** | Color of the Navigational Arrows, `Default: Black`
 | arrow_opacity | string | **Optional** | Opacity of the Navigational Arrows, `Default: 1`
-| fill | boolean | **Optional** | Makes the inner Cards flush with the Slideshow Card, `Default: false`
+| fill | boolean | **Optional** | Makes the inner Cards fill the container, `Default: false`
 | auto_play | boolean | **Optional** | Option to turn on/off auto switching of the cards, `Default: false`
 | auto_delay | string | **Optional** | Seconds between switching to next card when autoplay=true, `Default: 5`
 | folder | entity | **Optional** | This is for dynamically pulling images from a folder `See Dynamic Slideshow`
@@ -68,7 +68,7 @@ resources:
 
 ```yaml
 - type: custom:slideshow-card
-  flush: true
+  fill: true
   arrow_color: White
   arrow_opacity: .5
   auto_play: true
@@ -157,3 +157,14 @@ resources:
 ## Credits
 
 Thank you to @thomasloven for his [Custom Cards](https://community.home-assistant.io/t/my-lovelace-plugins/70726) to work from and his help when creating this card
+
+## Updates
+
+Breaking Changes: 
+    * Flush has been replaced with fill
+    * arrowcolor has been replaced with arrow_color
+    * arrowopacity has been replaced with arrow_opacity
+    * auotplay has been replaced with auto_play
+    * autodelay has been replaced with auto_delay
+Other Changes:
+    * Dynamic Slideshow

@@ -7,19 +7,45 @@ Slideshow Card for Home Assistant's UI LoveLace
 | Name | Type | Default | Description
 | ---- | ---- | ------- | -----------
 | type | string | **Required** | `custom:slideshow-card`
-| cards | list | **Required** | List of cards `Reqires 2 or more cards`
+| cards | list | **Required**/**Optional** | List of cards `Reqires 2 or more cards` `Only Optional if folder=true`
 | style | list | **Optional** | List of Style attributes
 | arrow_color | string | **Optional** | Color of the Navigational Arrows, `Default: Black`
 | arrow_opacity | string | **Optional** | Opacity of the Navigational Arrows, `Default: 1`
 | flush | boolean | **Optional** | Makes the inner Cards flush with the Slideshow Card, `Default: false`
 | auto_play | boolean | **Optional** | Option to turn on/off auto switching of the cards, `Default: false`
 | auto_delay | string | **Optional** | Seconds between switching to next card when autoplay=true, `Default: 5`
+| folder | entity | **Optional** | This is for dynamically pulling images from a folder `See Dynamic Slideshow`
+
 
 ## Added Child Card Variables
 
 | Name | Type | Default | Description
 | ---- | ---- | ------- | -----------
 | style | list | **Optional** | List of Style Attributes per Card - This allows for styling of Child Cards
+
+## Dynamic Slideshow
+
+This allows you add images to a folder in your WWW folder that contains images you would like the see in the slideshow. Currently, this requires over writing the Folder Sensor so that the client can see the files. I am working on a built in method but wanted to get this feature available.
+
+You will need to create a folder in your config directory named `custom_components`, within the custom_components folder you will need to create a `sensor` folder, and within that folder copy the `folder.py` file. 
+
+1. Create a folder in your `config` directory named `custom_components`
+2. Create a folder in your `custom_components` named `sensor`
+3. Copy the `folder.py` into the `sensor` folder
+4. Create a folder in your `WWW` folder named `images`
+5. Add your images to this folder
+6. Restart Home Assistant
+7. Check the sensor.images entity to see if the `fileList` attribute lists your image files
+8. Add a card to your ui-lovelace.yaml
+    ```yaml
+    - type: custom:slideshow-card
+      folder: sensor.images
+    ```
+    * The other configuration variables are still available to use
+9. Refresh your Lovelace Frontend
+
+Any files you add to the folder should automatically get added to the slide show
+
 
 ## Installation
 

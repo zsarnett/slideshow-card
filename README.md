@@ -32,7 +32,7 @@ You will need to create a folder in your config directory named `custom_componen
 1. Create a folder in your `config` directory named `custom_components`
 2. Create a folder in your `custom_components` named `sensor`
 3. Copy the `folder.py` into the `sensor` folder
-4. Added the folder sensor to your configuration.yaml file
+4. Add the folder sensor to your configuration.yaml file
     ```yaml
     - sensor
         - platform: folder_test

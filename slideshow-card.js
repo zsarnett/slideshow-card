@@ -27,55 +27,88 @@ class SlideshowCard extends Polymer.Element {
       this.content = document.createElement('div');
       this.content.className = 'card';
       card.appendChild(this.content);
-      this._cards.forEach(item => {
+      if(this.config.cards)
+        this._cards.forEach(item => {
         item.hass = hass;
         item.className = 'slides fade';
       });
       this.card = card;
       this.shadowRoot.appendChild(card);
+
+      if(hass.states[this.config.folder]) {
+        this.images = hass.states[this.config.folder].attributes.fileList;
+        hass.states[this.config.folder].attributes.fileList.forEach(item => {
+          const image = document.createElement('img');
+          var fileLocation = item.substring(11);
+          image.setAttribute("src", "/local" + fileLocation);
+          image.className = 'slides fade';
+          image.style.setProperty("width", "100%");
+          for(var k in this.config.style) {
+            image.style.setProperty(k, this.config.style[k]);
+          }
+          this.content.appendChild(image);
+        });
+      }
     }
     else {
-      this._cards.forEach(item => {
-        item.hass = hass;
-      });
+      if (this.config.cards)
+        this._cards.forEach(item => {
+          item.hass = hass;
+        });
+      if(hass.states[this.config.folder]){
+        hass.states[this.config.folder].attributes.fileList.forEach(item => {
+          if(!this.images.includes(item)){
+            const image = document.createElement('img');
+            var fileLocation = item.substring(11);
+            image.setAttribute("src", "/local" + fileLocation);
+            image.className = 'slides fade';
+            image.style.setProperty("width", "100%");
+            for(var k in this.config.style) {
+              image.style.setProperty(k, this.config.style[k]);
+            }
+            this.content.appendChild(image);
+            this.images.push(item);
+          }
+        });
+      }
     }
   }
 
   setConfig(config) {
     this.config = config;
 
-    if (!config || !config.cards || !Array.isArray(config.cards) || config.cards.length < 2) {
+    if (!config || (!config.folder && (!config.cards || !Array.isArray(config.cards) || config.cards.length < 2))) {
       throw new Error('Card Configuration is not set up properly!');
     }
 
-    this._cards = config.cards.map((item) => {
-        let element;
+    if(config.cards)
+      this._cards = config.cards.map((item) => {
+          let element;
 
-        if (item.type.startsWith("custom:")){
-          element = document.createElement(`${item.type.substr("custom:".length)}`);
-        }
-        else {
-          element = document.createElement(`hui-${item.type}-card`);
-        }
-        element.setConfig(item);
-        if(this.hass)
-          element.hass = this.hass;
+          if (item.type.startsWith("custom:")){
+            element = document.createElement(`${item.type.substr("custom:".length)}`);
+          }
+          else {
+            element = document.createElement(`hui-${item.type}-card`);
+          }
+          element.setConfig(item);
+          if(this.hass)
+            element.hass = this.hass;
 
-        return element;
-      });
+          return element;
+        });
     }
 
   _styleCard() {
     for(var k in this.config.style) {
       this.card.style.setProperty(k, this.config.style[k]);
     }
-
     const style = document.createElement('style');
     style.type = 'text/css';
     style.innerHTML = `
       .card {
         position: relative;
-        padding: ${this.config.flush ? '0' : '2'}em;
+        padding: ${this.config.fill ? '0' : '2'}em;
       }
 
       .slides {
@@ -123,12 +156,13 @@ class SlideshowCard extends Polymer.Element {
         from {opacity: .4}
         to {opacity: 1}
       }
-    `
+    `;
     this.card.appendChild(style);
   }
 
   _setInnerCardStyle() {
-    this._cards.forEach(item => {
+    if(this.config.cards)
+      this._cards.forEach(item => {
       this.content.appendChild(item);
 
       let target = item;
@@ -153,7 +187,6 @@ class SlideshowCard extends Polymer.Element {
 
       target.style.setProperty('box-shadow', 'none');
     });
-
   }
 
   _createNavigation() {

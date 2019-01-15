@@ -35,7 +35,7 @@ You will need to create a folder in your config directory named `custom_componen
 4. Add the folder sensor to your configuration.yaml file
     ```yaml
     - sensor
-        - platform: folder_test
+        - platform: folder
           folder: /config/www/images
     ```
 5. Create a folder in your `WWW` folder named `images`

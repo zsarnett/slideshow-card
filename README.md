@@ -1,4 +1,4 @@
-# Slideshow Card
+# Slideshow Card - No longer supporting
 
 Slideshow Card for Home Assistant's UI LoveLace
 
